@@ -170,23 +170,26 @@ void create_octave_frame(Frame *in, frame *f){
 }
 
 void MPF::mpf_main(){
-	frame *v_frame;
+	//frame v_frame[10];
 	frame mean_f;
 	float v_charac [7];
 	bool flag = false;
 	int count = 0;
 
 	Frame input;
-	frame v_octave; 
+	//frame v_octave; 
 
-	while(!flag){
-		input = in_f->read();
-		//cout << "input: " << input << endl;
+	input = in_f->read();
 
-		if (count == 0){
-			v_frame = new frame[input.size];
+	frame v_frame[input.size];
+
+	while(!flag || (count == 0)){
+		
+		if (count != 0){
+			input = in_f->read();
 		}
-
+		
+		cout << "input: " << input << endl;
 
 		create_octave_frame(&input, &v_frame[count]);
 		//print_frame(&v_frame[count]);
@@ -205,4 +208,11 @@ void MPF::mpf_main(){
 
 	create_characteristic_vector(&mean_f, v_charac);
 	print_vector(v_charac, 7);
+
+	//count = 0;
+
+	//delete []v_frame;
+	cout << "acabou" << endl;
+
+	sc_stop();
 }

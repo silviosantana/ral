@@ -1,6 +1,6 @@
 SC_MODULE (MPF){
 	
-	sc_port<sc_fifo_in_if<Frame > > in_f;
+	sc_fifo_in<Frame >  in_f;
 
 	//sc_port<sc_fifo_in_if<vector<float> > > in_f;
 
