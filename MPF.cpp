@@ -1,6 +1,5 @@
 #include "MPF.h"
 
-
 #define OT1_S 1
 #define OT2_S 1
 #define OT3_S 2
@@ -97,7 +96,7 @@ void create_mean_frame (frame  v_frame[], frame *m_frame, int num_f){
 }
 
 void create_characteristic_vector(frame *m_frame, float v_charac[]){
-	int i, j;
+	int i;
 	float sum = 0;
 
 	for (i = 0; i < 7; i ++){
@@ -114,7 +113,7 @@ void create_characteristic_vector(frame *m_frame, float v_charac[]){
 		if (i < OT7_S){ v_charac[6] += m_frame->ot7[i]; }
 	}
 
-	print_vector(v_charac, 7);
+	//print_vector(v_charac, 7);
 
 	sum = v_charac[0] + v_charac[1] + v_charac[2] + v_charac[3] + v_charac[4] + v_charac[5] + v_charac[6];
 	for (i = 0; i < 7; i ++){
@@ -182,6 +181,7 @@ void MPF::mpf_main(){
 	input = in_f->read();
 
 	frame v_frame[input.size];
+	//cout << "count: "<< input.last << endl;
 
 	while(!flag || (count == 0)){
 		
@@ -189,7 +189,7 @@ void MPF::mpf_main(){
 			input = in_f->read();
 		}
 		
-		cout << "input: " << input << endl;
+		//cout << "input: " << input << endl;
 
 		create_octave_frame(&input, &v_frame[count]);
 		//print_frame(&v_frame[count]);
@@ -198,21 +198,26 @@ void MPF::mpf_main(){
 		mask_frame(&v_frame[count]);
 		//print_frame(&v_frame[count]);
 		//cout << endl;
+		//cout << "count: "<< input.last << endl;
 
 		count++;
 		flag = input.last;
 	}
 
+	//cout << "count: "<< input.size << endl;
+
+	for (int h = 0; h < input.size ; h++){
+		// << v_frame[h].ot1 << endl;
+	}
+
+
 	create_mean_frame(v_frame, &mean_f, count);
-	print_frame(&mean_f);
+	//print_frame(&mean_f);
 
 	create_characteristic_vector(&mean_f, v_charac);
+	cout << "\n\n\n\n\n_________VETOR CARACTERISTICO__________:\n\n" << endl;
 	print_vector(v_charac, 7);
 
-	//count = 0;
 
-	//delete []v_frame;
-	cout << "acabou" << endl;
-
-	sc_stop();
+//	sc_stop();
 }

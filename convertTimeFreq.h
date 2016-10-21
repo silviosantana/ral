@@ -1,8 +1,9 @@
 #ifndef __CONVERTTIMEFREQ_H__
 #define __CONVERTTIMEFREQ_H__
 
+#include "systemc.h"
+#include "fft.h"
 #include "frame.h"
-#include "fft.cpp"
 
 using namespace std;
 

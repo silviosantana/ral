@@ -1,7 +1,7 @@
 #include "systemc.h"
+#include "frame.h"
 #include <stdio.h>
 #include <math.h>
-#include "frame.h"
 #include <sndfile.h>
 
 #define PI 				3.14159265

@@ -1,3 +1,5 @@
+#ifndef __FFT_H__
+#define __FFT_H__
 #pragma once
 
 namespace Fft {	
@@ -36,3 +38,5 @@ namespace Fft {
 	 */
 	void convolve(const std::vector<double> &xreal, const std::vector<double> &ximag, const std::vector<double> &yreal, const std::vector<double> &yimag, std::vector<double> &outreal, std::vector<double> &outimag);	
 }
+
+#endif
